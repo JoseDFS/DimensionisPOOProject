@@ -27,7 +27,7 @@ public class Game extends Canvas implements Runnable {
         
         handler = new Handler();
         
-        handler.addObj(new Box(100,100));
+        handler.addObj(new Box(100,100,ID.Block));
     }
 
     @Override

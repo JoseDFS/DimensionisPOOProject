@@ -17,15 +17,27 @@ public abstract class ObjetoG {
     
     protected int x,y;
     protected float velx = 0, vely = 0;
+    protected ID id;
     
-    public ObjetoG(int x, int y){
+    public ObjetoG(int x, int y, ID id){
         this.x = x;
         this.y = y;
+        this.id = id;
     }
+
+  
     
     public abstract void tick();
     public abstract void render(Graphics g);
     public abstract Rectangle getBounds();
+    
+      public ID getId() {
+        return id;
+    }
+
+    public void setId(ID id) {
+        this.id = id;
+    }
 
     public int getX() {
         return x;
