@@ -26,11 +26,12 @@ public class Game extends Canvas implements Runnable {
         start();
         
         handler = new Handler();
+        this.addKeyListener(new KeyInput(handler));
         
-        handler.addObj(new Box(100,100,ID.Block));
+        handler.addObj(new Anton(100, 100, ID.Player, handler));
     }
 
-    @Override
+  
     public void run() {
         //Bucle de refrescamiento de frames programado por Jebb el creador de Minecraft
         isRunning = true;
