@@ -19,39 +19,58 @@ public class Anton extends ObjetoG{
 
     public Anton(int x, int y, ID id, Handler handler) {
         super(x, y, id);
+        
         this.handler = handler;
     }
 
     @Override
     public void tick() {
-        x  += velx;
+        x += velx;
         y += vely;
         
+        colission();
+        
         //Movimiento del jugador
-        if(handler.isUp())vely = -5;
+        if(handler.isUp())vely = -3;
         else if(!handler.isDown()) vely = 0;
         
-        if(handler.isDown()) vely = 5;
+        if(handler.isDown()) vely = 3;
         else if(!handler.isUp()) vely = 0;
         
-        if(handler.isRight()) velx = 5;
+        if(handler.isRight()) velx = 3;
         else if(!handler.isLeft()) velx = 0;
         
-        if(handler.isLeft()) velx = -5;
+        if(handler.isLeft()) velx = -3;
         else if(!handler.isRight()) velx = 0;
         
             
        
     }
+    
+    private void colission(){
+        for(int i = 0; i < handler.obj.size(); i++){
+            ObjetoG tempObj = handler.obj.get(i);
+            
+            if(tempObj.getId() == ID.Block){
+                
+                if(getBounds().intersects(tempObj.getBounds())){
+                   x += velx * -1;
+                   y += vely * -1;
+                   
+                }
+            }
+        }
+    }
+    
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.black);
-        g.fillRect(x, y, 32, 64);
+        g.setColor(Color.blue);
+        g.fillRect(x, y, 64, 64);
     }
     
     @Override
     public Rectangle getBounds() {
-        return new Rectangle(x, y, 32, 64);
+        return new Rectangle(x, y, 63, 64);
     }
     
 }

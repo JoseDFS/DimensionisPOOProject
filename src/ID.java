@@ -8,5 +8,5 @@ public enum ID {
     Block(),
     key(),
     Enemy(),
-    Bullet(),
+    Bala(),
 }
