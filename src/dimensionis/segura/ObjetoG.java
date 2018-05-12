@@ -1,3 +1,5 @@
+package dimensionis.segura;
+
 
 import java.awt.Graphics;
 import java.awt.Rectangle;

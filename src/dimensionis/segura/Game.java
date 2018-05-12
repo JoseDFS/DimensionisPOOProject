@@ -1,3 +1,5 @@
+package dimensionis.segura;
+
 
 import java.awt.Canvas;
 import java.awt.Color;

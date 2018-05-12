@@ -1,3 +1,5 @@
+package dimensionis.segura;
+
 /**
  *
  * @author Jose Segura <com.segura.jd>

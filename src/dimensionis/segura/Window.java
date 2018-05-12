@@ -1,3 +1,5 @@
+package dimensionis.segura;
+
 
 import java.awt.Dimension;
 import javax.swing.JFrame;
