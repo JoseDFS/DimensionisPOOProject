@@ -20,9 +20,8 @@ public class MouseInput extends MouseAdapter {
     public MouseInput(Handler handler) {
         this.handler = handler;
     }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
+}
+   /*public void mousePressed(MouseEvent e) {
         int mx = (int) e.getX();
         int my = (int) e.getY();
         
@@ -34,4 +33,4 @@ public class MouseInput extends MouseAdapter {
             }
         }
     }
-}
+*/
