@@ -1,5 +1,6 @@
 package dimensionis.segura;
 
+import dimensionis.segura.ObjetoGInterface.ObjetoG;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 

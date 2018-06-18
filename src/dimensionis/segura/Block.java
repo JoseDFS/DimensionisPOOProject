@@ -1,6 +1,7 @@
 package dimensionis.segura;
 
 
+import dimensionis.segura.ObjetoGInterface.ObjetoG;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
