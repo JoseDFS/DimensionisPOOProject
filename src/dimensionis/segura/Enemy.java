@@ -51,8 +51,16 @@ public class Enemy extends ObjetoG {
                     vely = (r.nextInt(1 - -1) + r.nextInt(0 - -1)* r.nextInt(1));
                 }
             }
+            if(tempObj.getId() == ID.Bala){
+                if(getBounds().intersects(tempObj.getBounds())){
+                    vida -=10;
+                    handler.removeObject(tempObj);
+                }
+            }
 
         }
+        
+        if(vida <=0) handler.removeObject(this);
 
     }
 
