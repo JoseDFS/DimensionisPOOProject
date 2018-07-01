@@ -1,6 +1,7 @@
 package dimensionis.segura;
 
 import dimensionis.segura.ObjetoGInterface.ObjetoG;
+import dimensionis.segura.spriteAd.SpriteSheet;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -10,10 +11,15 @@ import java.awt.event.KeyEvent;
  */
 public class KeyInput extends KeyAdapter {
 
-    Handler handler;
+    private Handler handler;
+    private Game game;
+    private boolean shoot = false;
+    private SpriteSheet ss;
 
-    public KeyInput(Handler handler) {
+    public KeyInput(Handler handler, Game game, SpriteSheet ss) {
         this.handler = handler;
+        this.game = game;
+        this.ss = ss;
     }
 
     public void keyPressed(KeyEvent e) {
@@ -37,7 +43,20 @@ public class KeyInput extends KeyAdapter {
                     handler.setRight(true);
                 }
 
-                
+                if (key == KeyEvent.VK_DOWN && !shoot) {
+                    shoot = true;
+                    handler.addObj(new Bala(tempObj.getX() + 12, tempObj.getY() + 36, ID.Bala, handler, 0, 10,this.ss));
+
+                } else if (key == KeyEvent.VK_UP && !shoot) {
+                    shoot = true;
+                    handler.addObj(new Bala(tempObj.getX() + 12, tempObj.getY(), ID.Bala, handler, 0, -10,this.ss));
+                } else if (key == KeyEvent.VK_RIGHT && !shoot) {
+                    shoot = true;
+                    handler.addObj(new Bala(tempObj.getX()+32, tempObj.getY() + 32, ID.Bala, handler, 10, 0,this.ss));
+                } else if (key == KeyEvent.VK_LEFT && !shoot) {
+                    shoot = true;
+                    handler.addObj(new Bala(tempObj.getX(), tempObj.getY() + 32, ID.Bala, handler, -10, 0,this.ss));
+                }
 
             }
         }
@@ -63,20 +82,17 @@ public class KeyInput extends KeyAdapter {
                 if (key == KeyEvent.VK_D) {
                     handler.setRight(false);
                 }
-                
+
                 //Disparo con las flechas 
-                
                 if (key == KeyEvent.VK_DOWN) {
-                    handler.addObj(new Bala(tempObj.getX() + 32, tempObj.getY() + 64, ID.Bala, handler, 0, 10));
-                }
-                if (key == KeyEvent.VK_UP) {
-                    handler.addObj(new Bala(tempObj.getX() + 32, tempObj.getY(), ID.Bala, handler, 0, -10));
-                }
-                if (key == KeyEvent.VK_RIGHT) {
-                    handler.addObj(new Bala(tempObj.getX() + 64, tempObj.getY() + 32, ID.Bala, handler, 10, 0));
-                }
-                if (key == KeyEvent.VK_LEFT) {
-                    handler.addObj(new Bala(tempObj.getX(), tempObj.getY() + 32, ID.Bala, handler, -10, 0));
+                    shoot = false;
+
+                } else if (key == KeyEvent.VK_UP) {
+                    shoot = false;
+                } else if (key == KeyEvent.VK_RIGHT) {
+                    shoot = false;
+                } else if (key == KeyEvent.VK_LEFT) {
+                    shoot = false;
                 }
             }
         }

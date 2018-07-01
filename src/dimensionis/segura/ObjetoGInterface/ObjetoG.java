@@ -1,7 +1,7 @@
 package dimensionis.segura.ObjetoGInterface;
 
-
 import dimensionis.segura.ID;
+import dimensionis.segura.spriteAd.SpriteSheet;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -11,30 +11,32 @@ import java.awt.Rectangle;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Jose Segura <com.segura.jd>
  */
 public abstract class ObjetoG {
-    
-    protected int x,y;
+
+    protected int x, y;
     protected float velx = 0, vely = 0;
     protected ID id;
-    
-    public ObjetoG(int x, int y, ID id){
+    protected SpriteSheet ss;
+
+    public ObjetoG(int x, int y, ID id, SpriteSheet ss) {
         this.x = x;
         this.y = y;
         this.id = id;
+        this.ss = ss;
+
     }
 
-  
-    
     public abstract void tick();
+
     public abstract void render(Graphics g);
+
     public abstract Rectangle getBounds();
-    
-      public ID getId() {
+
+    public ID getId() {
         return id;
     }
 
@@ -73,8 +75,5 @@ public abstract class ObjetoG {
     public void setVely(float vely) {
         this.vely = vely;
     }
-    
-     
-            
-    
+
 }

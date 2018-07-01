@@ -13,9 +13,9 @@ import java.awt.Rectangle;
  *
  * @author Jose Segura <com.segura.jd>
  */
-public class Block extends ObjetoG {
+public class Block1 extends ObjetoG {
 
-    public Block(int x, int y, ID id,SpriteSheet ss) {
+    public Block1(int x, int y, ID id,SpriteSheet ss) {
         super(x, y, id,ss);
     }
 
@@ -26,12 +26,12 @@ public class Block extends ObjetoG {
 
    
     public void render(Graphics g) {
-       
+        
     }
 
    
     public Rectangle getBounds() {
-        return new Rectangle(x, y, 34, 38);
+        return new Rectangle(x, y, 31, 30);
     }
     
 }

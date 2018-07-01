@@ -6,9 +6,11 @@
 package dimensionis.segura;
 
 import dimensionis.segura.ObjetoGInterface.ObjetoG;
-import java.awt.Color;
+import dimensionis.segura.animacion.Animation;
+import dimensionis.segura.spriteAd.SpriteSheet;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 /**
@@ -18,16 +20,26 @@ import java.util.Random;
 public class Enemy extends ObjetoG {
 
     private Handler handler;
+    private Game game;
+    private BufferedImage[] enemy_sprite = new BufferedImage[3];
+    Animation anim;
 
     Random r = new Random();
     int choose = 0;
     int vida = 100;
 
-    public Enemy(int x, int y, ID id, Handler handler) {
+    public Enemy(int x, int y, ID id, Handler handler, Game game, SpriteSheet ss) {
 
-        super(x, y, id);
+        super(x, y, id, ss);
 
         this.handler = handler;
+        this.game = game;
+        enemy_sprite[0] = ss.grabbImage(1, 1, 32, 32);
+        enemy_sprite[1] = ss.grabbImage(2, 1, 32, 32);
+        enemy_sprite[2] = ss.grabbImage(3, 1, 32, 32);
+       
+        anim = new Animation(3,enemy_sprite[0],enemy_sprite[1],enemy_sprite[2]);
+        
     }
 
     @Override
@@ -41,33 +53,37 @@ public class Enemy extends ObjetoG {
             ObjetoG tempObj = handler.obj.get(i);
 
             if (tempObj.getId() == ID.Block || (tempObj != this && tempObj.getId() == ID.Enemy)) {
-                if (getBoundsB().intersects(tempObj.getBounds())) {
+                if (getBounds().intersects(tempObj.getBounds())) {
                     x += (velx * 1) * -1;
                     y += (vely * 1) * -1;
                     velx *= -1;
                     vely *= -1;
-                } else if (choose == 11 ) {
-                    velx = (r.nextInt(1 - -1) +  (r.nextInt(1 - -3)/3)* r.nextInt(1));
-                    vely = (r.nextInt(1 - -1) + r.nextInt(0 - -1)* r.nextInt(1));
+                } else if (choose == 11) {
+                    velx = (r.nextInt(1 - -1) + (r.nextInt(1 - -3) / 3) * r.nextInt(1));
+                    vely = (r.nextInt(1 - -1) + r.nextInt(0 - -1) * r.nextInt(1));
                 }
             }
-            if(tempObj.getId() == ID.Bala){
-                if(getBounds().intersects(tempObj.getBounds())){
-                    vida -=10;
+            if (tempObj.getId() == ID.Bala) {
+                if (getBounds().intersects(tempObj.getBounds())) {
+                    vida -= 10;
                     handler.removeObject(tempObj);
+                    game.energia++;
                 }
             }
 
         }
+
+        if (vida <= 0) {
+            handler.removeObject(this);
+        }
         
-        if(vida <=0) handler.removeObject(this);
+        anim.runAnimation();
 
     }
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.yellow);
-        g.fillRect(x, y, 32, 32);
+        anim.drawAnimation(g, x, y, 0);
     }
 
     @Override
