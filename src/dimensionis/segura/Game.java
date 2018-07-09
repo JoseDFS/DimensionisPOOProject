@@ -187,6 +187,7 @@ public class Game extends Canvas implements Runnable {
             handler.ClearLevel();
             vida = 100;
             muertes++;
+            Enem = 0;
         }
     }
 
