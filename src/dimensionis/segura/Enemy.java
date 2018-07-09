@@ -59,8 +59,8 @@ public class Enemy extends ObjetoG {
                     velx *= -1;
                     vely *= -1;
                 } else if (choose == 11) {
-                    velx = (r.nextInt(1 - -1) + (r.nextInt(1 - -1) / 3) * r.nextInt(1));
-                    vely = (r.nextInt(1 - -1) + r.nextInt(1 - -1) * r.nextInt(1));
+                    velx = (r.nextInt(3 - -3) + (r.nextInt(3 - -3) / 3) * r.nextInt(1));
+                    vely = (r.nextInt(2 - -2) + r.nextInt(2 - -2) * r.nextInt(1));
                 }
             }
             else if (tempObj.getId() == ID.Bala) {
