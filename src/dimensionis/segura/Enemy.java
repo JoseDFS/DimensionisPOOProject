@@ -70,6 +70,17 @@ public class Enemy extends ObjetoG {
                     handler.removeObject(tempObj);
                 }
             }
+             if (tempObj.getId() == ID.Player) {
+                if (getBounds().intersects(tempObj.getBounds())) {
+                    x += (velx * 1) * -1;
+                    y += (vely * 1) * -1;
+                    velx *= -1;
+                    vely *= -1;
+                } else if (choose == 11) {
+                    velx = (r.nextInt(3 - -3) + (r.nextInt(3 - -3) / 3) * r.nextInt(1));
+                    vely = (r.nextInt(2 - -2) + r.nextInt(2 - -2) * r.nextInt(1));
+                }
+            }
 
         }
 
