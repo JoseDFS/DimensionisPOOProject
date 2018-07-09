@@ -123,6 +123,15 @@ public class Game extends Canvas implements Runnable {
 
     }
 
+    public int getEnem() {
+        return Enem;
+    }
+
+    public void setEnem(int Enem) {
+        this.Enem = Enem;
+    }
+    
+
     public BufferedImage getLevel1() {
         return level1;
     }
@@ -238,6 +247,7 @@ public class Game extends Canvas implements Runnable {
 ////////////////////////////////////////
 
         } else if (State == STATE.Slots) {
+            Enem =0;
             g.drawImage(slots, 0, 0, null);
         } else if (State == STATE.Menu) {
             g.drawImage(menu, 0, 0, null);
@@ -246,8 +256,10 @@ public class Game extends Canvas implements Runnable {
             g.setFont(f);
             g.drawString("MUERTES: " + muertes, 400, 450);
         } else if (State == STATE.Instrucciones) {
+            Enem =0;
             g.drawImage(control, 0, 0, null);
         } else if (State == STATE.WIN) {
+            Enem =0;
             g.drawImage(win, 0, 0, null);
         } else if (State == STATE.LOOSE) {
             g.drawImage(loose, 0, 0, null);
