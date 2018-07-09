@@ -113,7 +113,7 @@ public class Boss2 extends ObjetoG {
     @Override
     public Rectangle getBounds() {
 
-        return new Rectangle(x, y, 300, 200);
+        return new Rectangle(x+5, y, 290, 200);
     }
 
 }
