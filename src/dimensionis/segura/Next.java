@@ -1,5 +1,9 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package dimensionis.segura;
-
 
 import dimensionis.segura.ObjetoGInterface.ObjetoG;
 import dimensionis.segura.spriteAd.SpriteSheet;
@@ -7,15 +11,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-
-
 /**
  *
- * @author Jose Segura <com.segura.jd>
+ * @author ~J.D
  */
-public class Block1 extends ObjetoG {
+public class Next extends ObjetoG {
 
-    public Block1(int x, int y, ID id,SpriteSheet ss) {
+    public Next(int x, int y, ID id,SpriteSheet ss) {
         super(x, y, id,ss);
     }
 
@@ -26,12 +28,14 @@ public class Block1 extends ObjetoG {
 
    
     public void render(Graphics g) {
-        
+        g.setColor(Color.CYAN);
+        g.fillOval(x, y, 50, 20);
+       
     }
 
    
     public Rectangle getBounds() {
-        return new Rectangle(x, y, 31, 30);
+        return new Rectangle(x, y, 50, 20);
     }
     
 }

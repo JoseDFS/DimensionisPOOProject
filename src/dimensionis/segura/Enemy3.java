@@ -17,7 +17,7 @@ import java.util.Random;
  *
  * @author Jose Segura <com.segura.jd>
  */
-public class Enemy extends ObjetoG {
+public class Enemy3 extends ObjetoG {
 
     private Handler handler;
     private Game game;
@@ -28,7 +28,7 @@ public class Enemy extends ObjetoG {
     int choose = 0;
     int vida = 100;
 
-    public Enemy(int x, int y, ID id, Handler handler, Game game, SpriteSheet ss) {
+    public Enemy3(int x, int y, ID id, Handler handler, Game game, SpriteSheet ss) {
 
         super(x, y, id, ss);
 
@@ -37,6 +37,10 @@ public class Enemy extends ObjetoG {
         enemy_sprite[0] = ss.grabbImage(1, 1, 32, 32);
         enemy_sprite[1] = ss.grabbImage(2, 1, 32, 32);
         enemy_sprite[2] = ss.grabbImage(3, 1, 32, 32);
+        
+         choose = r.nextInt(250);
+
+        vely = (r.nextInt(1 - -1) + r.nextInt(1 - -1) * r.nextInt(1));
        
         anim = new Animation(3,enemy_sprite[0],enemy_sprite[1],enemy_sprite[2]);
         
@@ -44,38 +48,31 @@ public class Enemy extends ObjetoG {
 
     @Override
     public void tick() {
-        x += velx;
-        y += vely;
+       
+       y += vely;
 
         choose = r.nextInt(250);
 
         for (int i = 0; i < handler.obj.size(); i++) {
             ObjetoG tempObj = handler.obj.get(i);
 
-            if (tempObj.getId() == ID.Block || (tempObj != this && tempObj.getId() == ID.Enemy)) {
+            if (tempObj.getId() == ID.Block) {
                 if (getBounds().intersects(tempObj.getBounds())) {
-                    x += (velx * 1) * -1;
+
                     y += (vely * 1) * -1;
-                    velx *= -1;
+
                     vely *= -1;
-                } else if (choose == 11) {
-                    velx = (r.nextInt(2 - -2) + (r.nextInt(2 - -3) / 3) * r.nextInt(1));
-                    vely = (r.nextInt(2 - -2) + r.nextInt(1 - -1) * r.nextInt(1));
+                } else if (choose ==50 ) {
+
+                    handler.addObj(new BalaEnemy(this.getX() + 12, this.getY() + 12, ID.BalaEnemy, handler, -5, 0, ss, game));
                 }
             }
-            else if (tempObj.getId() == ID.Bala) {
-                if (getBounds().intersects(tempObj.getBounds())) {
-                    vida -= 10;
-                    game.energia+=5;
-                    handler.removeObject(tempObj);
-                }
-            }
+           
 
         }
 
         if (vida <= 0) {
             handler.removeObject(this);
-            game.Enem--;
         }
         
         anim.runAnimation();
@@ -93,6 +90,6 @@ public class Enemy extends ObjetoG {
         return new Rectangle(x, y, 32, 32);
     }
 
-
+   
 
 }

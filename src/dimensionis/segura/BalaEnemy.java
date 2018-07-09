@@ -19,57 +19,52 @@ import java.awt.image.BufferedImage;
  *
  * @author Jose Segura <com.segura.jd>
  */
-public class Bala extends ObjetoG {
+public class BalaEnemy extends ObjetoG {
 
     private Handler handler;
     private BufferedImage[] bala_sprite = new BufferedImage[3];
     Animation anim;
+    Game game;
+  
 
-
-    public Bala(int x, int y, ID id,Handler handler, int mx, int my,SpriteSheet ss) {
-        super(x, y, id,ss);
+    public BalaEnemy(int x, int y, ID id, Handler handler, int mx, int my, SpriteSheet ss, Game game) {
+        super(x, y, id, ss);
         this.handler = handler;
         velx = mx;
         vely = my;
-        
-        bala_sprite[0] = ss.grabbImage(1, 1, 16, 16);
-        bala_sprite[1] = ss.grabbImage(2, 1, 16, 16);
-        bala_sprite[2] = ss.grabbImage(3, 1, 16, 16);
-       
-       
-        anim = new Animation(3,bala_sprite[0],bala_sprite[1],bala_sprite[2]);
+
+        this.game = game;
+
+        bala_sprite[0] = ss.grabbImage(4, 1, 32, 32);
+        bala_sprite[1] = ss.grabbImage(5, 1, 32, 32);
+        bala_sprite[2] = ss.grabbImage(6, 1, 32, 32);
+
+        anim = new Animation(3, bala_sprite[0], bala_sprite[1], bala_sprite[2]);
     }
-
-
 
     @Override
     public void tick() {
         x += velx;
         y += vely;
 
-        for (int i = 0; i < handler.obj.size(); i++) {
-            ObjetoG tempObj = handler.obj.get(i);
+       
 
-            if (tempObj.getId() == ID.Block ) {
-                if (getBounds().intersects(tempObj.getBounds())) {
-                    handler.removeObject(this);
-                }
-            }
-            
-        }
         anim.runAnimation();
+        if (x > 1000 || x < 0) {
+            handler.removeObject(this);
+        }
     }
 
     @Override
     public void render(Graphics g
     ) {
-       anim.drawAnimation(g, x, y, 0);
+        anim.drawAnimation(g, x, y, 0);
 
     }
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle(x, y, 8, 8);
+        return new Rectangle(x, y, 1, 1);
 
     }
 
